@@ -42,6 +42,19 @@ angular.module('myApp.controllers', []).
             console.log('$scope.profie='+JSON.stringify($scope.profile));
         };
     }])
+    .controller('MyUnitCtrl', ['$scope', 'OrgUnits',
+        function ($scope, OrgUnits) {
+
+        $scope.dhisAPI = dhisAPI;
+
+        $scope.me = OrgUnits.get(function () {
+            console.log('$scope.OrgUnits='+JSON.stringify($scope.orgUnits));
+        });
+
+        $scope.refreshMe = function() {
+            $scope.orgUnits.$get();
+        };
+    }])
     .controller('MyCtrl2', ['$scope', 'UserSettingService', function ($scope, UserSettingService) {
 
         $scope.userSetting = UserSettingService.get(function () {

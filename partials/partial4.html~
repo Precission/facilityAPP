@@ -1,0 +1,4 @@
+<p>This is a test<p>
+<p>Your first org unit is: {{me.organisationUnits[0].name}}</p>
+<p>My second org unit is: {{orgUnits.organisationUnits[2].name}}</p>
+<p>End of test<p>
