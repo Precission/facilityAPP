@@ -48,7 +48,7 @@ angular.module('myApp.controllers', []).
         $scope.dhisAPI = dhisAPI;
 
         $scope.me = OrgUnits.get(function () {
-            console.log('$scope.OrgUnits='+JSON.stringify($scope.orgUnits));
+            console.log('$scope.me='+JSON.stringify($scope.me));
         });
 
         $scope.refreshMe = function() {

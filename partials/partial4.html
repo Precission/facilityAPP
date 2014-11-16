@@ -4,10 +4,8 @@
 <p>Page count: {{me.pager.pageCount}}</p>
 <p>Total listings: {{me.pager.total}}</p>
 <p>Next page: {{me.pager.nextPage}}</p>
-<!--
-{{me}}
-{{me.organisationUnits}}
--->
+
+<p><b> Seach: </b></p> <input type="text" placeholder="Facility Name" ng-model="search.$">
 <table>
   <tr>
     <th>
@@ -17,9 +15,9 @@
       Unit Last Update
     </th>
   </tr>
-  <tr ng-repeat = "x in me.organisationUnits">
+  <tr ng-repeat = "x in me.organisationUnits | filter:search">
     <td style="width: 25%; height: 25px">
-      <a ng-click="ok(product.ProductID)" 
+      <a ng-click="ok(x.name)" 
          style=" cursor pointer; 
                 text-decoration underline; 
                 color black"> 
@@ -27,5 +25,28 @@
     </td>
     <td style="width: 25%; text-align:left; white-space: nowrap"> {{x.lastUpdated}} </td>
   </tr>
+  <tfoot>
+    <td colspan="6">
+      <div class="pagination pull-right">
+        <ul>
+          <li ng-class="{disabled: currentPage == 0}">
+            <a href ng-click="prevPage()">« Prev</a>
+          </li>
+          
+          <li ng-repeat="n in makearray(me.pager.pageCount)"
+              <!--ng-class="{active: n == currentPage}"
+              ng-click="setPage()">
+            <a href ng-bind="n + 1">1</a>-->
+          </li>
+	  
+          <li ng-class="{disabled: (currentPage) == totalPages}">
+            <a href ng-click="nextPage()">Next »</a>
+          </li>
+        </ul>
+      </div>
+    </td>
+  </tfoot>
 </table>
+<script type="text/javascript" src="partials/tableCtrl.js"></script>
+
 <p>End of test<p>
