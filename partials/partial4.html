@@ -4,7 +4,8 @@
 <p>Page count: {{me.pager.pageCount}}</p>
 <p>Total listings: {{me.pager.total}}</p>
 <p>Next page: {{me.pager.nextPage}}</p>
-
+<button ng-click="prevPageOfUnits()">Prev Page</button>
+<button ng-click="nextPageOfUnits()">Next Page</button>
 <p><b> Seach: </b></p> <input type="text" placeholder="Facility Name" ng-model="search.$">
 <table>
   <tr>

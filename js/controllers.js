@@ -54,6 +54,11 @@ angular.module('myApp.controllers', []).
         $scope.refreshMe = function() {
             $scope.orgUnits.$get();
         };
+	$scope.nextPageOfUnits = function() {
+            console.log("Before changing dhisAPI=" + $scope.dhisAPI);
+	    $scope.dhisAPI = $scope.me.pager.nextPage;
+	    console.log("new dhisAPI in MyUnitCtrl=" + JSON.stringify($scope.dhisAPI));
+        };
     }])
     .controller('MyCtrl2', ['$scope', 'UserSettingService', function ($scope, UserSettingService) {
 
