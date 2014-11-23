@@ -1,11 +1,9 @@
-<p>This is a test<p>
-
-<p>Page nr: {{me.pager.page}}</p>
-<p>Page count: {{me.pager.pageCount}}</p>
 <p>Total listings: {{me.pager.total}}</p>
-<p>Next page: {{me.pager.nextPage}}</p>
+<p>Page: {{me.pager.page}} of {{me.pager.pageCount}} </p>
 <button ng-click="prevPageOfUnits()">Prev Page</button>
+<input type="text" placeholder="{{me.pager.page}}" ng-model="page">
 <button ng-click="nextPageOfUnits()">Next Page</button>
+
 <p><b> Seach: </b></p> <input type="text" placeholder="Facility Name" ng-model="search.$">
 <table>
   <tr>
@@ -27,6 +25,4 @@
     <td style="width: 25%; text-align:left; white-space: nowrap"> {{x.lastUpdated}} </td>
   </tr>
 </table>
-
-
-<p>End of test<p>
+</div>

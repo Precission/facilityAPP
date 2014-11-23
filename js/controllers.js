@@ -55,6 +55,22 @@ angular.module('myApp.controllers', []).
             $scope.me.$get();
             console.log("RefreshMe function is run")
 	};
+	
+	$scope.page = "";
+
+	$scope.$watch("page", function() {
+	    if ($scope.page > 0 && $scope.page <= $scope.me.pager.pageCount) {
+		console.log("Changing page to " + $scope.page);
+		$http.get("http://inf5750-23.uio.no/api/organisationUnits?page=" + $scope.page).
+                success(function(data, status, headers, config) {
+                    $scope.me = data;
+                    console.log('$scope.me='+JSON.stringify($scope.me));
+                }).
+                error(function(data, status, headers, config) {
+                   console.log('$Watch page failede: Failed');
+                });
+	    }
+	});
 	    
 	$scope.nextPageOfUnits = function() {
 	    console.log("NextPage: " + $scope.me.pager.nextPage);
