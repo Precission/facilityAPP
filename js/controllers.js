@@ -42,8 +42,8 @@ angular.module('myApp.controllers', []).
             console.log('$scope.profie='+JSON.stringify($scope.profile));
         };
     }])
-    .controller('MyUnitCtrl', ['$scope', 'OrgUnits',
-        function ($scope, OrgUnits) {
+    .controller('MyUnitCtrl', ['$scope', '$http', 'OrgUnits',
+        function ($scope, $http, OrgUnits) {
 
         $scope.dhisAPI = dhisAPI;
 
@@ -52,12 +52,33 @@ angular.module('myApp.controllers', []).
         });
 
         $scope.refreshMe = function() {
-            $scope.orgUnits.$get();
-        };
+            $scope.me.$get();
+            console.log("RefreshMe function is run")
+	};
+	    
 	$scope.nextPageOfUnits = function() {
-            console.log("Before changing dhisAPI=" + $scope.dhisAPI);
-	    $scope.dhisAPI = $scope.me.pager.nextPage;
+	    console.log("NextPage: " + $scope.me.pager.nextPage);
+	    $http.get($scope.me.pager.nextPage).
+		success(function(data, status, headers, config) {
+		    $scope.me = data;
+		    console.log('$scope.me='+JSON.stringify($scope.me));
+		}).
+		error(function(data, status, headers, config) {
+		   console.log('NextPage: Failed');
+		});
+	    
 	    console.log("new dhisAPI in MyUnitCtrl=" + JSON.stringify($scope.dhisAPI));
+	};
+	$scope.prevPageOfUnits = function() {
+            console.log("PrevPage: " + $scope.me.pager.prevPage);
+            $http.get($scope.me.pager.prevPage).
+                success(function(data, status, headers, config) {
+                    $scope.me = data;
+                    console.log('$scope.me='+JSON.stringify($scope.me));
+                }).
+                error(function(data, status, headers, config) {
+                   console.log('PrevPage: Failed');
+                });
         };
     }])
     .controller('MyCtrl2', ['$scope', 'UserSettingService', function ($scope, UserSettingService) {
