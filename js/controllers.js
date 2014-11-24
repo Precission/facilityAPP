@@ -45,7 +45,7 @@ angular.module('myApp.controllers', []).
     .controller('MyUnitCtrl', ['$scope', '$http', 'OrgUnits',
         function ($scope, $http, OrgUnits) {
 	//Use for dropp down facility view:
-	$scope.viewOn = true;
+	$scope.viewOn = false;
 	$scope.status = {
 	    viewOpen: true,
 	    viewClosed: false
