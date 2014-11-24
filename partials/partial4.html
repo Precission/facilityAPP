@@ -4,7 +4,7 @@
 <input type="text" placeholder="{{me.pager.page}}" ng-model="page">
 <button ng-click="nextPageOfUnits()">Next Page</button>
 
-<p><b> Seach: </b></p> <input type="text" placeholder="Facility Name" ng-model="search.$">
+<p><b> Search: </b></p> <input type="text" placeholder="Facility Name" ng-model="search.$">
 <table>
   <tr>
     <th>
@@ -16,7 +16,7 @@
   </tr>
   <tr ng-repeat = "x in me.organisationUnits | filter:search">
     <td style="width: 25%; height: 25px">
-      <a ng-click="ok(x.name)" 
+      <a ng-click="pressUnit(x.href)" 
          style=" cursor pointer; 
                 text-decoration underline; 
                 color black"> 
@@ -26,3 +26,12 @@
   </tr>
 </table>
 </div>
+
+<!--<div>
+  <accordion close-others="viewOn">
+    <accordion-group heading="x.name" ng-repeat="x in me.organisationUnits">
+      {{x.name}}
+    </accordion-group>
+  </accordion>
+</div>
+-->
