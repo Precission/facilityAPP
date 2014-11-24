@@ -50,7 +50,10 @@ angular.module('myApp.controllers', []).
 	    viewOpen: true,
 	    viewClosed: false
 	};
-        $scope.dhisAPI = dhisAPI;
+        $scope.currentFacility = NaN; // current facility
+	
+	// inital scope:
+	$scope.dhisAPI = dhisAPI;
 	
         $scope.me = OrgUnits.get(function () {
             console.log('$scope.me='+JSON.stringify($scope.me));
@@ -61,6 +64,7 @@ angular.module('myApp.controllers', []).
             console.log("RefreshMe function is run")
 	};
 	
+	//Paging functions:
 	$scope.page = "";
 
 	$scope.$watch("page", function() {
