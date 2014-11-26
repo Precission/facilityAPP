@@ -45,16 +45,34 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
     .controller('MyUnitCtrl', ['$scope', '$http', 'OrgUnits',
         function ($scope, $http, OrgUnits) {
 	//Use for dropp down facility view:
-	$scope.viewOn = false;
+	$scope.oneViewOn = true;
+	$scope.showExtraUnitData = false;
 	$scope.status = {
 	    viewOpen: true,
 	    viewClosed: false
 	};
         $scope.currentFacility = NaN; // current facility
-	
+	//function for the edit unit button
+	$scope.editUnit = function(href) {
+	  $scope.showExtraUnitData = !$scope.showExtraUnitData;
+	  //console.log("editunit=" href);
+	  /*$http.get(href).
+          success(function(data, status, headers, config) {
+              $scope.currentFacility = data;
+              console.log('$scope.currentFacility='+JSON.stringify($scope.currentFacility));
+          }).
+          error(function(data, status, headers, config) {
+              console.log('Edit unit GET failed');
+          });*/
+	};
+	$scope.saveUnit = function() {
+	};
+	$scope.exitUnit = function() {
+	  $scope.showExtraUnitData = !$scope.showExtraUnitData;
+	};
 	// inital scope:
 	$scope.dhisAPI = dhisAPI;
-	
+	    
         $scope.me = OrgUnits.get(function () {
             console.log('$scope.me='+JSON.stringify($scope.me));
         });

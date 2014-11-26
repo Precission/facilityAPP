@@ -26,10 +26,19 @@
   </tr>
 </table>
 -->
-<accordion close-others="viewOn">
+<div class="row">
+<div class="col-md-6">
+<accordion close-others="oneViewOn">
   <accordion-group heading="{{x.name}}" ng-repeat="x in me.organisationUnits | filter:search">
-    <p> Facility Name: {{x.name}} </p>
-    <p> Last Updated: {{x.lastUpdated}} </p>
+    <div> Facility Name: {{x.name}} </div>
+    <div> Last Updated: {{x.lastUpdated}} </div>
+    <div ng-show="showExtraUnitData">Code: {{x.code}}</div>
     <button ng-click="editUnit()">Edit Unit</button>
+    <button ng-show="showExtraUnitData" ng-click="exitUnit()">Back</button>
   </accordion-group>
 </accordion>
+</div>
+<div class="col-md-6">
+MAP GOES HERE
+</div>
+</div>
