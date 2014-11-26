@@ -5,19 +5,13 @@
 <button ng-click="nextPageOfUnits()">Next Page</button>
 
 <p><b> Search: </b></p> <input type="text" placeholder="Facility Name" ng-model="search.$">
-<table>
+<!--<table>
   <tr>
     <th>
       Unit Name
     </th>
     <th>
       Unit Last Update
-    </th>
-    <th>
-      Code
-    </th>
-    <th>
-      edit
     </th>
   </tr>
   <tr ng-repeat = "x in me.organisationUnits | filter:search">
@@ -29,41 +23,13 @@
 	{{x.name}}
     </td>
     <td style="width: 25%; text-align:left; white-space: nowrap"> {{x.lastUpdated}} </td>
-    <td style="width: 25%; text-align:left; white-space: nowrap" ng-show="viewOn"> 
-      <p>{{x.code}}</p>
-    </td>
-    <td style="width: 25%; text-align:left; white-space: nowrap" ng-click="viewOn=!viewOn">edit</td>
   </tr>
 </table>
-
-<!--
-<table>
-  <tr> 
-    <th>Unit Name</th>
-    <th>Unit Last Update</th>
-    <th>edit</th>
-  </tr>
-      
-  <tbody ng-repeat="x in me.organisationUnits">
-    <tr ng-show="edit">
-      <td><input type="text" ng-model="x.name" disabled /></td>
-      <td><input type="text" ng-model="x.lastUpdated" /></td>
-      <td ng-click="edit=false">done</td>
-    </tr>
-    <tr ng-hide="edit">
-      <td style="width: 25%; height: 25px">{{x.name}}</td>
-      <td>{{x.lastUpdated}}</td>
-      <td ng-click="edit=true">edit</td>
-    </tr>
-  </tbody>
-  
-</table>
 -->
-<!--<div>
-  <accordion close-others="viewOn">
-    <accordion-group heading="x.name" ng-repeat="x in me.organisationUnits">
-      {{x.name}}
-    </accordion-group>
-  </accordion>
-</div>
--->
+<accordion close-others="viewOn">
+  <accordion-group heading="{{x.name}}" ng-repeat="x in me.organisationUnits | filter:search">
+    <p> Facility Name: {{x.name}} </p>
+    <p> Last Updated: {{x.lastUpdated}} </p>
+    <button ng-click="editUnit()">Edit Unit</button>
+  </accordion-group>
+</accordion>

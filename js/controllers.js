@@ -13,7 +13,7 @@
     See: https://docs.angularjs.org/api/ngResource/service/$resource for info
 */
 
-angular.module('myApp.controllers', []).
+angular.module('myApp.controllers', ['ui.bootstrap']).
     controller('MyCtrl1', ['$scope', 'MeService', 'ProfileService',
         function ($scope, MeService, ProfileService) {
 
