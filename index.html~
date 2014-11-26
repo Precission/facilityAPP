@@ -2,9 +2,9 @@
 <html lang="en" ng-app="myApp">
 <head>
     <meta charset="utf-8">
-    <title>Pregit DHIS2 App</title>
+    <title>TeamNSA DHIS2 Facility App</title>
     <link href="css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+    <link rel="stylesheet" href="css/leaflet.css" />
     <link rel="shortcut icon" href="../../favicon.ico" />
 
 </head>
@@ -17,6 +17,7 @@
     var dhisAPI = serverResponse.activities.dhis.href;
 </script>
 <body>
+
 <!-- Static navbar -->
 <div class="navbar navbar-default navbar-static-top">
     <div class="container">
@@ -26,13 +27,15 @@
                 <span class="icon-bar"></span> <span class="icon-bar"></span> <span
                     class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Example DHIS2 app</a>
+            <a class="navbar-brand" href="/">TeamNSA DHIS2 app</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="#/view1">/api/me</a></li>
                 <li><a href="#/view2">System settings</a></li>
                 <li><a href="#/view3">A map</a></li>
+                <li><a href="#/view4">Facility App</a></li>
+                <li><a href="#/view5">Testing</a></li>
             </ul>
         </div>
         <!--/.nav-collapse -->
@@ -41,39 +44,17 @@
 
 <div class="container" ng-view></div>
 
-<div class="container">This app is based on the Angular Seed project and uses AngularJS. </div>
-<div class="container">Authored by Lars Roland @ IFI / University of Oslo as an example of a DHIS2 web app,
-    for use in the INF5750 Open Source development course. </div>
-
-<div ng-app="" ng-controller="tableController">
-  <div class="container">  
-  <table>
-      <tr>
-        <th>Facility Name</th>
-	<th>ID</th>
-    </tr>
-      <tr ng-repeat="x in units">
-	<td>{{ x.name }}</td>
-	<td>{{ x.id }}</td>
-      </tr>
-    </table>
-  </div>
-</div>
-<script>
-  function tableController($scope,$http) {
-  $http.get("api/organisationUnits.json")
-  .success(function(response) {$scope.units = response;});
-  }
-</script>
+<div class="container"> Authored by Haris Sistek (hariss), Daniel Sunde (), Ratish Mohan(ratishm) as a group for INF5750 FacilityApp </div>
 
 <!-- In production use:
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
 -->
 
+
 <script src="lib/angular/angular.js"></script>
 <script src="lib/angular/angular-route.js"></script>
 <script src="lib/angular/angular-resource.js"></script>
-<script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+<script src="js/leaflet.js"></script>
 <script src="js/angular-leaflet-directive.js"></script>
 
 <!--<script type="text/javascript" src="http://cdn.jsdelivr.net/lodash/2.1.0/lodash.compat.min.js"></script>-->
@@ -86,8 +67,8 @@
 <script src="js/filters.js"></script>
 <script src="js/directives.js"></script>
 
-<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src="js/jquery-1.10.1.min.js"></script>
+<script src="js/jquery-migrate-1.2.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 
 <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry&amp;sensor=false"></script>

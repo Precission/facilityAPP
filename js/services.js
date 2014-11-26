@@ -58,28 +58,11 @@ myAppServices.factory("UserSettingService", function ($resource) {
     );
 });
 
+
 myAppServices.factory("OrgUnits", function ($resource) {
     return $resource(
         //dhisAPI+'/api/organisationUnits?page=2',
-	dhisAPI+'/api/organisationUnits',
-	{
-            // If you're passing variables, for example into the URL
-            // they would be here and then as :varName in the URL
-        },
-        {
-            // If you want to implement special functions, you'd
-            // put them here.
-	    change: function(dhis) {
-		dhisAPI = dhis;
-	    }
-        }
-    );
-});
-/*
-myAppServices.factory("OrgUnitsPager", function ($resource, page) {
-    return $resource(
- 
-           dhisAPI =
+        dhisAPI+'/api/organisationUnits',
         {
             // If you're passing variables, for example into the URL
             // they would be here and then as :varName in the URL
@@ -87,7 +70,9 @@ myAppServices.factory("OrgUnitsPager", function ($resource, page) {
         {
             // If you want to implement special functions, you'd
             // put them here.
+            change: function(dhis) {
+                dhisAPI = dhis;
+            }
         }
     );
 });
-*/

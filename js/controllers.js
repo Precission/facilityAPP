@@ -44,19 +44,19 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
     }])
     .controller('MyUnitCtrl', ['$scope', '$http', 'OrgUnits',
         function ($scope, $http, OrgUnits) {
-	//Use for dropp down facility view:
-	$scope.oneViewOn = true;
-	$scope.showExtraUnitData = false;
-	$scope.status = {
-	    viewOpen: true,
-	    viewClosed: false
-	};
+        //Use for dropp down facility view:
+        $scope.oneViewOn = true;
+        $scope.showExtraUnitData = false;
+        $scope.status = {
+            viewOpen: true,
+            viewClosed: false
+        };
         $scope.currentFacility = NaN; // current facility
-	//function for the edit unit button
-	$scope.editUnit = function(href) {
-	  $scope.showExtraUnitData = !$scope.showExtraUnitData;
-	  //console.log("editunit=" href);
-	  /*$http.get(href).
+        //function for the edit unit button
+        $scope.editUnit = function(href) {
+          $scope.showExtraUnitData = !$scope.showExtraUnitData;
+          //console.log("editunit=" href);
+          /*$http.get(href).
           success(function(data, status, headers, config) {
               $scope.currentFacility = data;
               console.log('$scope.currentFacility='+JSON.stringify($scope.currentFacility));
@@ -64,15 +64,15 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
           error(function(data, status, headers, config) {
               console.log('Edit unit GET failed');
           });*/
-	};
-	$scope.saveUnit = function() {
-	};
-	$scope.exitUnit = function() {
-	  $scope.showExtraUnitData = !$scope.showExtraUnitData;
-	};
-	// inital scope:
-	$scope.dhisAPI = dhisAPI;
-	    
+        };
+        $scope.saveUnit = function() {
+        };
+        $scope.exitUnit = function() {
+          $scope.showExtraUnitData = !$scope.showExtraUnitData;
+        };
+        // inital scope:
+        $scope.dhisAPI = dhisAPI;
+
         $scope.me = OrgUnits.get(function () {
             console.log('$scope.me='+JSON.stringify($scope.me));
         });
@@ -80,15 +80,15 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
         $scope.refreshMe = function() {
             $scope.me.$get();
             console.log("RefreshMe function is run")
-	};
-	
-	//Paging functions:
-	$scope.page = "";
+        };
 
-	$scope.$watch("page", function() {
-	    if ($scope.page > 0 && $scope.page <= $scope.me.pager.pageCount) {
-		console.log("Changing page to " + $scope.page);
-		$http.get("http://inf5750-23.uio.no/api/organisationUnits?page=" + $scope.page).
+        //Paging functions:
+        $scope.page = "";
+
+        $scope.$watch("page", function() {
+            if ($scope.page > 0 && $scope.page <= $scope.me.pager.pageCount) {
+                console.log("Changing page to " + $scope.page);
+                $http.get("http://inf5750-23.uio.no/api/organisationUnits?page=" + $scope.page).
                 success(function(data, status, headers, config) {
                     $scope.me = data;
                     console.log('$scope.me='+JSON.stringify($scope.me));
@@ -96,23 +96,23 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
                 error(function(data, status, headers, config) {
                    console.log('$Watch page failede: Failed');
                 });
-	    }
-	});
-	    
+            }
+        });
+
 	$scope.nextPageOfUnits = function() {
-	    console.log("NextPage: " + $scope.me.pager.nextPage);
-	    $http.get($scope.me.pager.nextPage).
-		success(function(data, status, headers, config) {
-		    $scope.me = data;
-		    console.log('$scope.me='+JSON.stringify($scope.me));
-		}).
-		error(function(data, status, headers, config) {
-		   console.log('NextPage: Failed');
-		});
-	    
-	    console.log("new dhisAPI in MyUnitCtrl=" + JSON.stringify($scope.dhisAPI));
-	};
-	$scope.prevPageOfUnits = function() {
+            console.log("NextPage: " + $scope.me.pager.nextPage);
+            $http.get($scope.me.pager.nextPage).
+                success(function(data, status, headers, config) {
+                    $scope.me = data;
+                    console.log('$scope.me='+JSON.stringify($scope.me));
+                }).
+                error(function(data, status, headers, config) {
+                   console.log('NextPage: Failed');
+                });
+
+            console.log("new dhisAPI in MyUnitCtrl=" + JSON.stringify($scope.dhisAPI));
+        };
+        $scope.prevPageOfUnits = function() {
             console.log("PrevPage: " + $scope.me.pager.prevPage);
             $http.get($scope.me.pager.prevPage).
                 success(function(data, status, headers, config) {
@@ -144,7 +144,7 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
         }
 
     }])
-    .controller('MyCtrl3', ['$scope', 'UserSettingsService', function ($scope, UserSettingsService) {
+    .controller('MyCtrl3', ['$scope', function ($scope) {
         console.log('Ctrl3');
 
         $scope.location = {lat: 0.602118, lng: 30.160217};
@@ -162,7 +162,8 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
             $scope.markers.push({
                 lat: $scope.location.lat,
                 lng: $scope.location.lng,
-                message: "My Added Marker"
+                //message: "My Added Marker"
+		message: "Latitude: " + lat + "Longitude: " + lng
             });
 
         };
