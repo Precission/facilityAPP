@@ -81,6 +81,36 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
             $scope.me.$get();
             console.log("RefreshMe function is run")
         };
+	
+	//search related functions:
+	$scope.search = "";
+
+        $scope.searchAll = function() {
+            if ($scope.search != null) {
+                console.log("Searching all " + $scope.page);
+                $http.get("http://inf5750-23.uio.no/api/organisationUnits?paging=false").
+                success(function(data, status, headers, config) {
+                    $scope.me = data;
+                    console.log('$scope.me='+JSON.stringify($scope.me));
+                }).
+                error(function(data, status, headers, config) {
+                   console.log('Failed: searchAll');
+                });
+            }
+        };
+	$scope.resetPage = function() {
+            if ($scope.search != null) {
+                console.log("Reset page to page1 " + $scope.page);
+                $http.get("http://inf5750-23.uio.no/api/organisationUnits").
+                success(function(data, status, headers, config) {
+                    $scope.me = data;
+                    console.log('$scope.me='+JSON.stringify($scope.me));
+                }).
+                error(function(data, status, headers, config) {
+                   console.log('Failed: restePage');
+                });
+            }
+        };
 
         //Paging functions:
         $scope.page = "";
@@ -100,7 +130,7 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
         });
 
 	$scope.nextPageOfUnits = function() {
-            console.log("NextPage: " + $scope.me.pager.nextPage);
+	    console.log("NextPage: " + $scope.me.pager.nextPage);
             $http.get($scope.me.pager.nextPage).
                 success(function(data, status, headers, config) {
                     $scope.me = data;
