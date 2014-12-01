@@ -1,21 +1,34 @@
 <p>Total listings: {{me.pager.total}}</p>
 <p>Page: {{me.pager.page}} of {{me.pager.pageCount}} </p>
-<button ng-click="prevPageOfUnits()">Prev Page</button>
+<button ng-click="prevPageOfUnits()" class="btn">Prev Page</button>
 <input type="text" placeholder="{{me.pager.page}}" ng-model="page">
-<button ng-click="nextPageOfUnits()">Next Page</button>
+<button ng-click="nextPageOfUnits()" class="btn">Next Page</button>
 
 <p><b> Search: </b></p> <input type="text" placeholder="Facility Name" ng-model="search.$">
-<button ng-click="searchAll()">Search All</button>
-<button ng-click="resetPage()">Reset page 1</button>
+<button ng-click="searchAll()" class="btn btn-info">Search All</button>
+<button ng-click="resetPage()" class="btn btn-info">Reset page 1</button>
 <div class="row">
   <div class="col-md-6">
     <accordion close-others="oneViewOn">
       <accordion-group heading="{{x.name}}" ng-repeat="x in me.organisationUnits | filter:search">
 	<div> Facility Name: {{x.name}} </div>
 	<div> Last Updated: {{x.lastUpdated}} </div>
-	<div ng-show="showExtraUnitData">Code: {{x.code}}</div>
-	<button ng-click="editUnit()">Edit Unit</button>
-	<button ng-show="showExtraUnitData" ng-click="exitUnit()">Back</button>
+	<div> Code: {{x.code}} </div>
+	<div ng-show="showExtraUnitData">
+
+	<p>
+	<div>
+            Name: <input ng-model="mySpecific.name" type="text" placeholder="Data to save" class="form-control">
+            Short Name: <input ng-model="mySpecific.shortName" type="text" placeholder="Data to save" class="form-control">
+	</div>
+	</p>
+	<p>
+	<button ng-click="saveSpecific()" type="submit" class="btn btn-success">Save setting</button>
+        <button ng-show="showExtraUnitData" ng-click="exitUnit()" class="btn btn-danger">Back</button>
+	</p>
+
+	</div>
+	<button ng-click="editUnit(x.id)" ng-hide="showExtraUnitData" class="btn btn-success">Edit Unit</button>
       </accordion-group>
     </accordion>
   </div>

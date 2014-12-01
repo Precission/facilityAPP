@@ -53,7 +53,7 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
         };
         $scope.currentFacility = NaN; // current facility
         //function for the edit unit button
-        $scope.editUnit = function(href) {
+        $scope.editUnit = function(myId) {
           $scope.showExtraUnitData = !$scope.showExtraUnitData;
           $scope.getSpecific(myId);
           //console.log("editunit=" href);
