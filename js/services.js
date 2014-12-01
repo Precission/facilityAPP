@@ -76,3 +76,19 @@ myAppServices.factory("OrgUnits", function ($resource) {
         }
     );
 });
+
+myAppServices.factory("SpecificUnit", function ($resource) {
+    return $resource(
+        dhisAPI+"/api/organisationUnits/:id",
+        {
+                id: "@id"
+        },
+        {
+                save: {
+                method:'PUT',
+                isArray:false,
+                headers: {'Content-Type': 'application/json'}}
+        }
+    );
+});
+
