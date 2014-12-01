@@ -42,8 +42,8 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
             console.log('$scope.profie='+JSON.stringify($scope.profile));
         };
     }])
-    .controller('MyUnitCtrl', ['$scope', '$http', 'OrgUnits',
-        function ($scope, $http, OrgUnits) {
+    .controller('MyUnitCtrl', ['$scope', '$http', 'OrgUnits', 'SpecificUnit',
+        function ($scope, $http, OrgUnits, SpecificUnit) {
         //Use for dropp down facility view:
         $scope.oneViewOn = true;
         $scope.showExtraUnitData = false;
@@ -55,6 +55,7 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
         //function for the edit unit button
         $scope.editUnit = function(href) {
           $scope.showExtraUnitData = !$scope.showExtraUnitData;
+          $scope.getSpecific(myId);
           //console.log("editunit=" href);
           /*$http.get(href).
           success(function(data, status, headers, config) {
@@ -81,6 +82,23 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
             $scope.me.$get();
             console.log("RefreshMe function is run")
         };
+
+	//gets specific facility api
+        $scope.getSpecific = function(myId) {
+                $scope.mySpecific = SpecificUnit.get({id:myId}, function() {
+                        console.log("mySpecific="+JSON.stringify($scope.mySpecific));
+                });
+        };
+
+	//saves specific facility changes
+        $scope.saveSpecific = function () {
+            console.log('Saving setting:'+JSON.stringify($scope.mySpecific));
+            $scope.mySpecific.$save({}, function() {
+                $scope.showExtraUnitData = false;
+                $scope.me.$get();
+                alert("Data saved successfully.");
+            });
+        }
 	
 	//search related functions:
 	$scope.search = "";
