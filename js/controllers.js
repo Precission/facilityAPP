@@ -192,15 +192,15 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
         }
 
     }])
-    .controller('MyCtrl3', ['$scope', function ($scope) {
+    .controller('MyCtrl3', ['$scope', '$http', 'SpecificUnit', function ($scope, $http, SpecificUnit) {
         console.log('Ctrl3');
 
-        $scope.location = {lat: 0.602118, lng: 30.160217};
+        $scope.location = {lat: 8.4494988, lng: -11.7868289};
 
         $scope.center = {
-            lat: 0.577400,
-            lng: 30.201073,
-            zoom: 10
+            lat: 8.4494988,
+            lng: -11.7868289,
+            zoom: 8
         };
 
         $scope.markers = new Array();
@@ -212,6 +212,86 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
                 lng: $scope.location.lng,
                 //message: "My Added Marker"
 		message: "Latitude: " + lat + "Longitude: " + lng
+            });
+
+        };
+
+	$scope.addUnitMarkers = function (name, lvl, id) {
+	    // http://inf5750-23.uio.no/api/geoFeatures.json?ou=ou:LEVEL-2;O6uvpzGd5pu
+            console.log('Ctrl3 Add Unit marker(s)');
+            console.log('\t name: ' + name);
+            console.log('\t id: ' + id);
+            console.log('\t lvl: ' + lvl);
+	    $scope.unitData;
+	    var len = 0;
+	    var coord_array;
+	    $http.get("http://inf5750-23.uio.no/api/geoFeatures.json?ou=ou:LEVEL-" + lvl + ";" + id)
+            .success(function(data, status, headers, config) {
+                $scope.unitData = data;
+		console.log("unitData=" + JSON.stringify($scope.unitData));
+		coord_array = JSON.parse($scope.unitData[0].co); // string array to array
+		console.log("coord_array: " + coord_array)
+
+		if (angular.isUndefined(coord_array.length)) {
+			console.log("coord_array is undefined")
+		}
+		else {
+			if(lvl === 4) {
+	    			len = coord_array.length;
+	    			console.log("The length of the array coord_array is " + len);
+			}
+			else {
+	    			len = coord_array[0][0].length;
+	    			console.log("The length of the array coord_array is " + len);
+			}
+		}
+
+		if(lvl === 4) {
+			console.log("Location: " + coord_array);
+            		$scope.location.lat = coord_array[1];
+            		$scope.location.lng = coord_array[0];
+
+            		$scope.markers.push({
+            		    lat: coord_array[1],
+            		    lng: coord_array[0],
+            		    //message: "My Added Marker"
+	    		    message: name,
+            		    draggable: false
+            		});
+		}
+		else {
+			for(var i=0; i < len; i++) {
+				console.log("In for-loop: " + coord_array[0][0][i]);
+            			$scope.location.lat = coord_array[0][0][i][1];
+            			$scope.location.lng = coord_array[0][0][i][0];
+				var tmpMarker = {
+            			    lat: coord_array[0][0][i][1],
+            			    lng: coord_array[0][0][i][0],
+            			    //message: "My Added Marker"
+	    			    message: name,
+            			    draggable: false
+				}
+				console.log("Adding marker " + JSON.stringify(tmpMarker));
+            			$scope.markers.push(tmpMarker);
+			}
+			console.log("Marker array: " + JSON.stringify($scope.markers))
+			//var tmpPoly = {
+			//	latlngs: coord_array[0][0],
+			//	stroke: false,
+		        //        fillColor: '#ff69b4',
+			//	type: "polygon"
+			//}
+			// $scope.polygon = {
+                    	//	paths: {
+			//		p1: tmpPoly
+			//	}
+			//}
+			////$scope.polygon.push(tmpPoly);
+			//console.log("Polygon array: " + JSON.stringify($scope.polygon))
+		}
+	    })
+            .error(function(data, status, headers, config) {
+               console.log('Failed to get coordinates data for Unit');
             });
 
         };
