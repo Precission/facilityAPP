@@ -33,6 +33,21 @@
     </accordion>
   </div>
   <div class="col-md-6">
-    MAP GOES HERE
+    <div id="map" ng-controller="MyCtrl3">
+		<div>
+			<p>
+			    Long: <input type="number" ng-model="center.lng">
+			    Lat: <input type="number" ng-model="center.lat">
+			</p>
+		</div>
+		<p>
+		    <button ng-click="addMarkers()" type="submit" class="btn btn-success">Add markers</button>
+		    <button ng-click="removeMarkers()" type="submit" class="btn btn-success">Remove markers</button>
+		    <button ng-click="addUnitMarkers(mySpecific.name, mySpecific.level, mySpecific.id)" type="submit" class="btn btn-success">Show Unit(s) on Map</button>
+		</p>
+		<p>
+		    <leaflet defaults="defaults" center="center" events="events" geojson="geojson" markers="markers" layers="layers" height="480px" width="800px"></leaflet>
+		</p>
+	</div>
   </div>
 </div>
