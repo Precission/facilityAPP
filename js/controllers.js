@@ -119,7 +119,7 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
 	$scope.resetPage = function() {
             if ($scope.search != null) {
                 console.log("Reset page to page1 " + $scope.page);
-                $http.get("http://inf5750-23.uio.no/api/organisationUnits").
+                $http.get("http://inf5750-23.uio.no/api/organisationUnits?filter=").
                 success(function(data, status, headers, config) {
                     $scope.me = data;
                     console.log('$scope.me='+JSON.stringify($scope.me));
@@ -136,7 +136,7 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
         $scope.$watch("page", function() {
             if ($scope.page > 0 && $scope.page <= $scope.me.pager.pageCount) {
                 console.log("Changing page to " + $scope.page);
-                $http.get("http://inf5750-23.uio.no/api/organisationUnits?page=" + $scope.page).
+                $http.get("http://inf5750-23.uio.no/api/organisationUnits?page=" + $scope.page +"&filter=").
                 success(function(data, status, headers, config) {
                     $scope.me = data;
                     console.log('$scope.me='+JSON.stringify($scope.me));
@@ -149,7 +149,7 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
 
 	$scope.nextPageOfUnits = function() {
 	    console.log("NextPage: " + $scope.me.pager.nextPage);
-            $http.get($scope.me.pager.nextPage).
+            $http.get($scope.me.pager.nextPage + "&filter=").
                 success(function(data, status, headers, config) {
                     $scope.me = data;
                     console.log('$scope.me='+JSON.stringify($scope.me));
@@ -162,7 +162,7 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
         };
         $scope.prevPageOfUnits = function() {
             console.log("PrevPage: " + $scope.me.pager.prevPage);
-            $http.get($scope.me.pager.prevPage).
+            $http.get($scope.me.pager.prevPage + "&filter=").
                 success(function(data, status, headers, config) {
                     $scope.me = data;
                     console.log('$scope.me='+JSON.stringify($scope.me));

@@ -62,7 +62,7 @@ myAppServices.factory("UserSettingService", function ($resource) {
 myAppServices.factory("OrgUnits", function ($resource) {
     return $resource(
         //dhisAPI+'/api/organisationUnits?page=2',
-        dhisAPI+'/api/organisationUnits',
+        dhisAPI+'/api/organisationUnits?filter=',
         {
             // If you're passing variables, for example into the URL
             // they would be here and then as :varName in the URL
