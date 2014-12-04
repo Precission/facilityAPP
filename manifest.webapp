@@ -1,7 +1,7 @@
 {
     "version":"1.0",
-    "name":"Example Application",
-    "description":"Example application for DHIS2.",
+    "name":"NSA DHIS2 Facility App",
+    "description":"Organisation Units Application",
     "icons":{
     "16":null,
         "48":"/img/icon-48.png",
@@ -9,9 +9,9 @@
 },
     "developer":{
     "url":"http://dhis2.org/",
-        "name":"Lars Kristian Roland",
+        "name":"Hariss Sistek, Ratish Mohan and Daniel Sunde",
         "company":"University of Oslo",
-        "email":"lars@roland.bz"
+        "email":"danielsunde1986@gmail.com"
 },
     "activities":{
     "dhis":{
