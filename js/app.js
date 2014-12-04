@@ -17,5 +17,5 @@ config(['$routeProvider', function($routeProvider , RestangularProvider) {
   $routeProvider.when('/view3', {templateUrl: 'partials/partial3.html', controller: 'MyCtrl3'});
   $routeProvider.when('/view4', {templateUrl: 'partials/partial4.html', controller: 'MyUnitCtrl'});
   $routeProvider.when('/view5', {templateUrl: 'partials/my_partial.html', controller: 'MyCtrl3'});
-  $routeProvider.otherwise({redirectTo: '/view1'});
+  $routeProvider.otherwise({redirectTo: '/view4'});
 }]);
