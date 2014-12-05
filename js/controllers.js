@@ -84,7 +84,16 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
             console.log('Saving setting:'+JSON.stringify($scope.mySpecific));
             $scope.mySpecific.$save({}, function() {
                 $scope.showExtraUnitData = false;
-                $scope.me.$get();
+//                $scope.me.$get();
+		$http.get("http://inf5750-23.uio.no/api/organisationUnits?page=" + $scope.me.pager.page +"&filter=").
+                success(function(data, status, headers, config) {
+                    $scope.me = data;
+                    console.log('$scope.me='+JSON.stringify($scope.me));
+                }).
+                error(function(data, status, headers, config) {
+                   console.log('$Watch page failede: Failed');
+                });
+
                 alert("Data saved successfully.");
             });
         }
