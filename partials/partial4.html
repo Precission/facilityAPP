@@ -29,22 +29,13 @@
 
 	</div>
 	<button ng-click="editUnit(x.id)" ng-hide="showExtraUnitData" class="btn btn-success">Edit Unit</button>
-  	<!-- <div ng-controller="MyCtrl3">
-		    <button ng-click="addUnitMarkers(mySpecific.name, mySpecific.level, mySpecific.id)" type="submit" class="btn btn-success">Show Unit(s) on Map</button>
-	</div> -->
+	<button ng-click="getSpecific(x.id)" ng-hide="showExtraUnitData" class="btn btn-success">Load Map Data</button>
       </accordion-group>
     </accordion>
   </div>
   <div class="col-md-6">
     <div ng-controller="MyCtrl3">
-		<!-- <div>
-			<p>
-			    Long: <input type="number" ng-model="center.lng">
-			    Lat: <input type="number" ng-model="center.lat">
-			</p>
-		</div> -->
 		<p>
-		    <button ng-click="addMarkers()" type="submit" class="btn btn-success">Add markers</button>
 		    <button ng-click="removeMarkers()" type="submit" class="btn btn-success">Remove markers</button>
 		    <button ng-click="addUnitMarkers(mySpecific.name, mySpecific.level, mySpecific.id)" type="submit" class="btn btn-success">Show Unit(s) on Map</button>
 		</p>

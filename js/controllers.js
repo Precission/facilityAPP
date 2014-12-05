@@ -56,17 +56,6 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
         $scope.editUnit = function(myId) {
           $scope.showExtraUnitData = !$scope.showExtraUnitData;
           $scope.getSpecific(myId);
-          //console.log("editunit=" href);
-          /*$http.get(href).
-          success(function(data, status, headers, config) {
-              $scope.currentFacility = data;
-              console.log('$scope.currentFacility='+JSON.stringify($scope.currentFacility));
-          }).
-          error(function(data, status, headers, config) {
-              console.log('Edit unit GET failed');
-          });*/
-        };
-        $scope.saveUnit = function() {
         };
         $scope.exitUnit = function() {
           $scope.showExtraUnitData = !$scope.showExtraUnitData;
@@ -161,17 +150,29 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
             console.log("new dhisAPI in MyUnitCtrl=" + JSON.stringify($scope.dhisAPI));
         };
         $scope.prevPageOfUnits = function() {
-            console.log("PrevPage: " + $scope.me.pager.prevPage);
-            $http.get($scope.me.pager.prevPage + "&filter=").
-                success(function(data, status, headers, config) {
-                    $scope.me = data;
-                    console.log('$scope.me='+JSON.stringify($scope.me));
-                }).
-                error(function(data, status, headers, config) {
-                   console.log('PrevPage: Failed');
-                });
+            if ($scope.me.pager.prevPage == "http://inf5750-23.uio.no/api/organisationUnits"){
+		console.log("Last PrevPage: " + $scope.me.pager.prevPage);
+		$http.get($scope.me.pager.prevPage + "?filter=").
+                    success(function(data, status, headers, config) {
+			$scope.me = data;
+			console.log('$scope.me='+JSON.stringify($scope.me));
+                    }).
+                    error(function(data, status, headers, config) {
+			console.log('PrevPage: Failed');
+                    });
+	    } else {
+		console.log("PrevPage: " + $scope.me.pager.prevPage);
+		$http.get($scope.me.pager.prevPage + "&filter=").
+                    success(function(data, status, headers, config) {
+			$scope.me = data;
+			console.log('$scope.me='+JSON.stringify($scope.me));
+                    }).
+                    error(function(data, status, headers, config) {
+			console.log('PrevPage: Failed');
+                    });
+	    }
         };
-    }])
+	}])
     .controller('MyCtrl2', ['$scope', 'UserSettingService', function ($scope, UserSettingService) {
 
         $scope.userSetting = UserSettingService.get(function () {
@@ -275,17 +276,6 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
             			$scope.markers.push(tmpMarker);
 			}
 			console.log("Marker array: " + JSON.stringify($scope.markers))
-		//	var tmpPoly = {
-		//		latlngs: coord_array[0][0],
-		//		stroke: false,
-		//                fillColor: '#ff69b4',
-		//		type: "polygon"
-		//	}
-                //    	paths: {
-		//		p1: tmpPoly
-		//	}
-		//	//$scope.polygon.push(tmpPoly);
-		//	console.log("Polygon array: " + JSON.stringify($scope.polygon))
 		}
 	    })
             .error(function(data, status, headers, config) {
