@@ -275,19 +275,17 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
             			$scope.markers.push(tmpMarker);
 			}
 			console.log("Marker array: " + JSON.stringify($scope.markers))
-			//var tmpPoly = {
-			//	latlngs: coord_array[0][0],
-			//	stroke: false,
-		        //        fillColor: '#ff69b4',
-			//	type: "polygon"
-			//}
-			// $scope.polygon = {
-                    	//	paths: {
-			//		p1: tmpPoly
-			//	}
-			//}
-			////$scope.polygon.push(tmpPoly);
-			//console.log("Polygon array: " + JSON.stringify($scope.polygon))
+		//	var tmpPoly = {
+		//		latlngs: coord_array[0][0],
+		//		stroke: false,
+		//                fillColor: '#ff69b4',
+		//		type: "polygon"
+		//	}
+                //    	paths: {
+		//		p1: tmpPoly
+		//	}
+		//	//$scope.polygon.push(tmpPoly);
+		//	console.log("Polygon array: " + JSON.stringify($scope.polygon))
 		}
 	    })
             .error(function(data, status, headers, config) {
@@ -319,7 +317,7 @@ angular.module('myApp.controllers', ['ui.bootstrap']).
             lat: $scope.location.lat,
             lng: $scope.location.lng,
             focus: true,
-            message: "A draggable marker",
+            message: "Welcome to Sierra Leone",
             draggable: true
         });
 
